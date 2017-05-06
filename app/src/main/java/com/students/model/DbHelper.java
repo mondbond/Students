@@ -78,7 +78,7 @@ public class DbHelper {
             }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Boolean> updateStudentData (Student newStudentData) {
+    public Observable<Boolean> updateOrInsertStudentData (Student newStudentData) {
         return Observable.create(new Observable.OnSubscribe<Boolean>() {
             @Override
             public void call(Subscriber<? super Boolean> subscriber) {
