@@ -1,4 +1,4 @@
-package com.students.view;
+package com.students.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

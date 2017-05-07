@@ -1,6 +1,6 @@
 package com.students.di;
 
-import com.students.view.ListActivity;
+import com.students.view.activity.ListActivity;
 
 import dagger.Component;
 
