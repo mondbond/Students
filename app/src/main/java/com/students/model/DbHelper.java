@@ -2,6 +2,7 @@ package com.students.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
+import android.util.Log;
 
 import com.students.model.db.DaoMaster;
 import com.students.model.db.DaoSession;
@@ -32,9 +33,11 @@ public class DbHelper {
         return Observable.create(new Observable.OnSubscribe<List<Student>>() {
             @Override
             public void call(Subscriber<? super List<Student>> subscriber) {
+
                 DaoSession daoSession = mDaoMaster.newSession();
                 StudentDao storeDao = daoSession.getStudentDao();
-                List<Student> allStudents = storeDao.loadAll();
+                List<Student> allStudents = new ArrayList<Student>();
+                allStudents = storeDao.loadAll();
 
                 subscriber.onNext(allStudents);
             }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
@@ -64,7 +67,6 @@ public class DbHelper {
                 subscriber.onNext(true);
             }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
-
 
     public Observable<Boolean> deleteAll () {
         return Observable.create(new Observable.OnSubscribe<Boolean>() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:orientation="vertical"
@@ -49,10 +50,12 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:text="Button"
         android:layout_centerVertical="true"
-        android:text="Button" />
+        android:layout_toRightOf="@+id/student_item_second_name"
+        android:layout_toEndOf="@+id/student_item_second_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" />
 
     <TextView
         android:id="@+id/student_item_second_name"
@@ -74,5 +77,14 @@
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
         android:background="@color/breakLineColor" />
+
+    <ImageView
+        android:id="@+id/student_item_delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/delete_ico" />
 
 </RelativeLayout>
