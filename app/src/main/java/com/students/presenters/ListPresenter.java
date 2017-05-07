@@ -33,7 +33,9 @@ public class ListPresenter implements BasePresenter<ListView> {
     }
 
     public void getAllStudents() {
-        mDbHelper.getAllStudents().subscribe(students -> mView.setAllStudents(students));
+        mDbHelper.getAllStudents().subscribe(students -> {
+            mView.setAllStudents(students);
+        });
     }
 
     public void deleteAll() {

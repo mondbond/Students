@@ -3,11 +3,13 @@ package com.students.model.db;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 
 @Entity
 public class Student {
 
     @Id
+    @Unique
     private Long id;
 
     private String name;

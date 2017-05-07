@@ -1,33 +1,36 @@
 package com.students.presenters;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.students.R;
 import com.students.commons.BasePresenter;
 import com.students.model.DbHelper;
 import com.students.model.db.Student;
-import com.students.view.DetailView;
+import com.students.view.EditView;
 import javax.inject.Inject;
 
-public class DetailPresenter implements BasePresenter<DetailView> {
+public class EditPresenter implements BasePresenter<EditView> {
 
-    private DetailView mView;
+    private EditView mView;
     private DbHelper mDbHelper;
     private Context mContext;
 
     @Inject
-    public DetailPresenter(DbHelper mDbHelper, Context mContext) {
+    public EditPresenter(DbHelper mDbHelper, Context mContext) {
         this.mDbHelper = mDbHelper;
         this.mContext = mContext;
     }
 
     @Override
-    public void init(DetailView view) {
+    public void init(EditView view) {
         this.mView = view;
     }
 
     public void getStudentById(long studentId) {
-        mDbHelper.getStudentById(studentId).subscribe(student -> mView.setStudentInfo(student));
+        mDbHelper.getStudentById(studentId).subscribe(student -> {
+            mView.setStudentInfo(student);
+        });
     }
 
     public void addOrUpdateStudent(Student student) {

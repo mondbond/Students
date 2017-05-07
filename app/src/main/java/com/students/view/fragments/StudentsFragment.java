@@ -37,14 +37,6 @@ import javax.inject.Inject;
  * create an instance of this fragment.
  */
 public class StudentsFragment extends BaseFragment implements ListView, StudentsAdapter.OnIteractionListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -52,24 +44,7 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
     ListPresenter mPresenter;
     private RecyclerView mRecyclerView;
     private StudentsAdapter mAdapter;
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StudentsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StudentsFragment newInstance(String param1, String param2) {
-        StudentsFragment fragment = new StudentsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private Bundle mSavedInstanceState;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,12 +52,8 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
         setRetainInstance(true);
         setHasOptionsMenu(true);
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
         getComponent(MainComponent.class).inject(this);
+        mSavedInstanceState = savedInstanceState;
     }
 
     @Override
@@ -95,9 +66,9 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.list_fragment_recycler_student_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new StudentsAdapter(null, this);
+        mRecyclerView.setAdapter(mAdapter);
         mPresenter.init(this);
-
-
         mPresenter.getAllStudents();
         return v;
     }
@@ -110,7 +81,7 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
         addItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                Log.d("MENU_LIST", "add");
+                mListener.startEditor(null);
                 return false;
             }
         });
@@ -119,17 +90,10 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
         deleteItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                Log.d("MENU_LIST", "delete all");
+                mPresenter.deleteAll();
                 return false;
             }
         });
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -150,12 +114,18 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
     }
 
     @Override
-    public void setAllStudents(List<Student> students) {
-        Student student = new Student((long) 3242, "Ivan", "Berezovsky", 3, "удача", 200);
-        students.add(student);
+    public void onResume() {
+        super.onResume();
 
-        mAdapter = new StudentsAdapter(students, this);
-        mRecyclerView.setAdapter(mAdapter);
+        if(mSavedInstanceState == null){
+            mPresenter.getAllStudents();
+        }
+    }
+
+    @Override
+    public void setAllStudents(List<Student> students) {
+            mAdapter.setStudents(students);
+            mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -168,18 +138,7 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
         mPresenter.deleteStudentById(studentId);
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-        void startEditor(long studentId);
+        void startEditor(Long studentId);
     }
 }

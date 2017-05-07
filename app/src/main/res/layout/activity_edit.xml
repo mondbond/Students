@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.students.view.activity.ListActivity">
+    tools:context="com.students.view.activity.EditActivity">
 
     <FrameLayout
-        android:id="@+id/studentsFragmentContainer"
+        android:id="@+id/editFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

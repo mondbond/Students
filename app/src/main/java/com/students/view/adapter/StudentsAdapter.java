@@ -53,7 +53,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.ViewHo
 
         holder.mName.setText(mStudents.get(position).getName());
         holder.mSecondName.setText(mStudents.get(position).getSecondName());
-//        holder.mCourse.setText(mStudents.get(position).getCourse());
+        holder.mCourse.setText(String.valueOf(mStudents.get(position).getCourse()));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,4 +84,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.ViewHo
         void onDeleteItemClick(long studentId);
     }
 
+    public void setStudents(List<Student> mStudents) {
+        this.mStudents = mStudents;
+    }
 }

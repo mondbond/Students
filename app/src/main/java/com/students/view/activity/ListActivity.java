@@ -1,9 +1,8 @@
 package com.students.view.activity;
 
-import android.net.Uri;
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-
 import com.students.App;
 import com.students.R;
 import com.students.commons.BaseActivity;
@@ -11,6 +10,7 @@ import com.students.commons.IHasComponent;
 import com.students.di.AppComponent;
 import com.students.di.DaggerMainComponent;
 import com.students.di.MainComponent;
+import com.students.view.fragments.EditlFragment;
 import com.students.view.fragments.StudentsFragment;
 
 public class ListActivity extends BaseActivity implements IHasComponent<MainComponent>,
@@ -29,10 +29,9 @@ public class ListActivity extends BaseActivity implements IHasComponent<MainComp
         }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.listFragmentContainer, mStudentsFragment);
+        ft.replace(R.id.studentsFragmentContainer, mStudentsFragment);
         ft.commit();
     }
-
 
     @Override
     public void setupComponent(AppComponent appComponent) {
@@ -47,13 +46,14 @@ public class ListActivity extends BaseActivity implements IHasComponent<MainComp
         return sComponent;
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public static MainComponent getMainComponent() {
+        return sComponent;
     }
 
     @Override
-    public void startEditor(long studentId) {
-
+    public void startEditor(Long studentId) {
+        Intent intent = new Intent(this, EditActivity.class);
+        intent.putExtra(EditlFragment.STUDENT_ID, studentId);
+        startActivity(intent);
     }
 }

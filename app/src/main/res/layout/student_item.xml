@@ -38,24 +38,15 @@
         android:id="@+id/student_item_course_text"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
-        android:layout_toEndOf="@+id/student_item_course"
-        android:layout_toRightOf="@+id/student_item_course"
         android:text="TextView"
         android:textColor="@color/colorText"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/student_item_second_name"
-        android:layout_toEndOf="@+id/student_item_second_name"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" />
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/student_item_course"
+        android:layout_alignBottom="@+id/student_item_course"
+        android:layout_toRightOf="@+id/student_item_course"
+        android:layout_toEndOf="@+id/student_item_course"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
 
     <TextView
         android:id="@+id/student_item_second_name"

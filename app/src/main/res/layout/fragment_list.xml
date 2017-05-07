@@ -23,6 +23,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/list_fragment_toolbar"></android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/list_fragment_toolbar">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
