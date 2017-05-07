@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.students.commons.BaseFragment;
 import com.students.di.MainComponent;
 import com.students.model.db.Student;
 import com.students.presenters.EditPresenter;
+import com.students.util.MinMaxInputFilter;
 import com.students.view.EditView;
 
 import javax.inject.Inject;
@@ -81,11 +83,14 @@ public class EditlFragment extends BaseFragment implements EditView{
         mPresenter.init(this);
 
         mId = (EditText) v.findViewById(R.id.detail_fragment_id_editor);
+        mId.setFilters(new InputFilter[] {new MinMaxInputFilter(1, 999999)});
         mName = (EditText) v.findViewById(R.id.detail_fragment_name_editor);
         mSecondName = (EditText) v.findViewById(R.id.detail_fragment_second_name_editor);
         mCourse = (EditText) v.findViewById(R.id.detail_fragment_course_editor);
+        mCourse.setFilters(new InputFilter[] {new MinMaxInputFilter(1, 6)});
         mOccupation = (EditText) v.findViewById(R.id.detail_fragment_occupation_editor);
         mResult = (EditText) v.findViewById(R.id.detail_fragment_result_editor);
+        mResult.setFilters(new InputFilter[] {new MinMaxInputFilter(0, 100)});
 
         mSaveButton = (Button) v.findViewById(R.id.detail_fragment_save_btn);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
