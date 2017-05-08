@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:orientation="vertical"
@@ -15,6 +16,7 @@
         android:id="@+id/student_item_name"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
+        android:maxWidth="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -41,26 +43,36 @@
         android:text="TextView"
         android:textColor="@color/colorText"
         android:textSize="14sp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:layout_alignBaseline="@+id/student_item_course"
         android:layout_alignBottom="@+id/student_item_course"
         android:layout_toRightOf="@+id/student_item_course"
-        android:layout_toEndOf="@+id/student_item_course"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp" />
+        android:layout_toEndOf="@+id/student_item_course" />
 
     <TextView
-        android:id="@+id/student_item_second_name"
+        android:id="@+id/student_item_surname"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_alignParentTop="true"
+        android:maxWidth="200dp"
         android:layout_marginLeft="13dp"
         android:layout_marginStart="13dp"
-        android:layout_toEndOf="@+id/student_item_name"
-        android:layout_toRightOf="@+id/student_item_name"
         android:text="TextView"
         android:textColor="@color/colorText"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/student_item_name"
+        android:layout_toEndOf="@+id/student_item_name" />
 
+    <com.students.custom_view.ExamResultView
+        android:id="@+id/student_item_exam_result"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@+id/student_item_course_text"
+        android:layout_toEndOf="@+id/student_item_course_text"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp" />
 
     <View
         android:id="@+id/student_item_breakLine"
@@ -73,9 +85,9 @@
         android:id="@+id/student_item_delete"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/delete_ico"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/delete_ico" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

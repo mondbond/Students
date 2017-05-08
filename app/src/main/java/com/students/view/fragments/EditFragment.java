@@ -1,11 +1,8 @@
 package com.students.view.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,24 +22,19 @@ import javax.inject.Inject;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EditlFragment#newInstance} factory method to
+ * Use the {@link EditFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EditlFragment extends BaseFragment implements EditView{
+public class EditFragment extends BaseFragment implements EditView{
 
+    public static final String EDIT_FRAGMENT_TAG = "editFragment";
     public static final String STUDENT_ID = "studentId";
-    public static final String OPERATION_TYPE = "operationType";
-
-    public static final String ADD_OPERATION = "addOperation";
-    public static final String EDIT_OPERATION = "editOpreration";
 
     private Long mStudentId;
-    private String mOperationType;
-
     private Button mSaveButton;
     private EditText mId;
     private EditText mName;
-    private EditText mSecondName;
+    private EditText mSurname;
     private EditText mOccupation;
     private EditText mResult;
     private EditText mCourse;
@@ -55,10 +47,10 @@ public class EditlFragment extends BaseFragment implements EditView{
      * this fragment using the provided parameters.
      *
      * @param studentId Parameter 1.
-     * @return A new instance of fragment EditlFragment.
+     * @return A new instance of fragment EditFragment.
      */
-    public static EditlFragment newInstance(Long studentId) {
-        EditlFragment fragment = new EditlFragment();
+    public static EditFragment newInstance(Long studentId) {
+        EditFragment fragment = new EditFragment();
         Bundle args = new Bundle();
         args.putLong(STUDENT_ID, studentId);
         fragment.setArguments(args);
@@ -85,7 +77,7 @@ public class EditlFragment extends BaseFragment implements EditView{
         mId = (EditText) v.findViewById(R.id.detail_fragment_id_editor);
         mId.setFilters(new InputFilter[] {new MinMaxInputFilter(1, 999999)});
         mName = (EditText) v.findViewById(R.id.detail_fragment_name_editor);
-        mSecondName = (EditText) v.findViewById(R.id.detail_fragment_second_name_editor);
+        mSurname = (EditText) v.findViewById(R.id.detail_fragment_surname_editor);
         mCourse = (EditText) v.findViewById(R.id.detail_fragment_course_editor);
         mCourse.setFilters(new InputFilter[] {new MinMaxInputFilter(1, 6)});
         mOccupation = (EditText) v.findViewById(R.id.detail_fragment_occupation_editor);
@@ -96,14 +88,23 @@ public class EditlFragment extends BaseFragment implements EditView{
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Student newStudentInfo = new Student(Long.parseLong(mId.getText().toString()), mName.getText().toString(),
-                        mSecondName.getText().toString(), Integer.parseInt(mCourse.getText().toString()),
-                        mOccupation.getText().toString(), Integer.parseInt(mResult.getText().toString()));
 
-                mPresenter.addOrUpdateStudent(newStudentInfo);
+                if(!mId.getText().toString().equals("") && !mName.getText().toString().equals("")
+                        && !mSurname.getText().toString().equals("") && !mResult.getText().toString().equals("")
+                        && !mCourse.getText().toString().equals("") && !mOccupation.getText().toString().equals("")) {
+                    Student newStudentInfo = new Student(Long.parseLong(mId.getText().toString()), mName.getText().toString(),
+                            mSurname.getText().toString(), Integer.parseInt(mCourse.getText().toString()),
+                            mOccupation.getText().toString(), Integer.parseInt(mResult.getText().toString()));
+
+                    mPresenter.addOrUpdateStudent(newStudentInfo);
+                }else {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.empty_fields_error_msg),
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
+//        if we need to edit students data
         if(mStudentId != 0){
             mPresenter.getStudentById(mStudentId);
         }
@@ -111,13 +112,12 @@ public class EditlFragment extends BaseFragment implements EditView{
         return v;
     }
 
-
     @Override
     public void setStudentInfo(Student student) {
         mId.setText(String.valueOf(student.getId()));
         mName.setText(student.getName());
         mOccupation.setText(student.getOccupation());
-        mSecondName.setText(student.getSecondName());
+        mSurname.setText(student.getSurname());
         mCourse.setText(Integer.toString(student.getCourse()));
         mResult.setText(Integer.toString(student.getResults()));
     }

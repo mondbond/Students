@@ -24,7 +24,7 @@ public class StudentDao extends AbstractDao<Student, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property SecondName = new Property(2, String.class, "secondName", false, "SECOND_NAME");
+        public final static Property Surname = new Property(2, String.class, "surname", false, "SURNAME");
         public final static Property Course = new Property(3, int.class, "course", false, "COURSE");
         public final static Property Occupation = new Property(4, String.class, "occupation", false, "OCCUPATION");
         public final static Property Results = new Property(5, int.class, "results", false, "RESULTS");
@@ -45,7 +45,7 @@ public class StudentDao extends AbstractDao<Student, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"STUDENT\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
-                "\"SECOND_NAME\" TEXT," + // 2: secondName
+                "\"SURNAME\" TEXT," + // 2: surname
                 "\"COURSE\" INTEGER NOT NULL ," + // 3: course
                 "\"OCCUPATION\" TEXT," + // 4: occupation
                 "\"RESULTS\" INTEGER NOT NULL );"); // 5: results
@@ -71,9 +71,9 @@ public class StudentDao extends AbstractDao<Student, Long> {
             stmt.bindString(2, name);
         }
  
-        String secondName = entity.getSecondName();
-        if (secondName != null) {
-            stmt.bindString(3, secondName);
+        String surname = entity.getSurname();
+        if (surname != null) {
+            stmt.bindString(3, surname);
         }
         stmt.bindLong(4, entity.getCourse());
  
@@ -98,9 +98,9 @@ public class StudentDao extends AbstractDao<Student, Long> {
             stmt.bindString(2, name);
         }
  
-        String secondName = entity.getSecondName();
-        if (secondName != null) {
-            stmt.bindString(3, secondName);
+        String surname = entity.getSurname();
+        if (surname != null) {
+            stmt.bindString(3, surname);
         }
         stmt.bindLong(4, entity.getCourse());
  
@@ -121,7 +121,7 @@ public class StudentDao extends AbstractDao<Student, Long> {
         Student entity = new Student( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // secondName
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // surname
             cursor.getInt(offset + 3), // course
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // occupation
             cursor.getInt(offset + 5) // results
@@ -133,7 +133,7 @@ public class StudentDao extends AbstractDao<Student, Long> {
     public void readEntity(Cursor cursor, Student entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setSecondName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setSurname(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setCourse(cursor.getInt(offset + 3));
         entity.setOccupation(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setResults(cursor.getInt(offset + 5));

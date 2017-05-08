@@ -4,17 +4,17 @@ import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.students.R;
 import com.students.commons.IHasComponent;
 import com.students.di.MainComponent;
-import com.students.view.fragments.EditlFragment;
+import com.students.view.fragments.EditFragment;
+import com.students.view.fragments.StudentsFragment;
 
 public class EditActivity extends AppCompatActivity implements IHasComponent<MainComponent> {
 
     private static MainComponent sComponent;
-    private EditlFragment mEditFragment;
+    private EditFragment mEditFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +25,17 @@ public class EditActivity extends AppCompatActivity implements IHasComponent<Mai
         sComponent.inject(this);
 
         Intent intent = getIntent();
-        Long d = intent.getLongExtra(EditlFragment.STUDENT_ID, 0);
-
-        if(mEditFragment == null){
-            mEditFragment = EditlFragment.newInstance(d);
-        }
+        Long studentId = intent.getLongExtra(EditFragment.STUDENT_ID, 0);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.editFragmentContainer, mEditFragment);
-        ft.commit();
+        mEditFragment = (EditFragment) getSupportFragmentManager()
+                .findFragmentByTag(EditFragment.EDIT_FRAGMENT_TAG);
+
+        if(mEditFragment == null){
+            mEditFragment = EditFragment.newInstance(studentId);
+        }
+        ft.replace(R.id.editFragmentContainer, mEditFragment,
+                EditFragment.EDIT_FRAGMENT_TAG).commit();
     }
 
     @Override

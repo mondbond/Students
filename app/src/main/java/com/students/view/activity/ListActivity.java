@@ -10,7 +10,7 @@ import com.students.commons.IHasComponent;
 import com.students.di.AppComponent;
 import com.students.di.DaggerMainComponent;
 import com.students.di.MainComponent;
-import com.students.view.fragments.EditlFragment;
+import com.students.view.fragments.EditFragment;
 import com.students.view.fragments.StudentsFragment;
 
 public class ListActivity extends BaseActivity implements IHasComponent<MainComponent>,
@@ -24,13 +24,16 @@ public class ListActivity extends BaseActivity implements IHasComponent<MainComp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        mStudentsFragment = (StudentsFragment) getSupportFragmentManager()
+                .findFragmentByTag(StudentsFragment.STUDENTS_FRAGMENT_TAG);
+
         if(mStudentsFragment == null){
             mStudentsFragment = new StudentsFragment();
         }
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.studentsFragmentContainer, mStudentsFragment);
-        ft.commit();
+        ft.replace(R.id.studentsFragmentContainer, mStudentsFragment,
+                StudentsFragment.STUDENTS_FRAGMENT_TAG).commit();
     }
 
     @Override
@@ -53,7 +56,7 @@ public class ListActivity extends BaseActivity implements IHasComponent<MainComp
     @Override
     public void startEditor(Long studentId) {
         Intent intent = new Intent(this, EditActivity.class);
-        intent.putExtra(EditlFragment.STUDENT_ID, studentId);
+        intent.putExtra(EditFragment.STUDENT_ID, studentId);
         startActivity(intent);
     }
 }

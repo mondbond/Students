@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.students.R;
+import com.students.custom_view.ExamResultView;
 import com.students.model.db.Student;
 
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.List;
 public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.ViewHolder>{
 
     private List<Student> mStudents;
-    private OnIteractionListener mListener;
+    private OnInteractionListener mListener;
 
-    public StudentsAdapter(List<Student> mStudents, OnIteractionListener listener) {
+    public StudentsAdapter(List<Student> mStudents, OnInteractionListener listener) {
         this.mStudents = mStudents;
         this.mListener = listener;
     }
@@ -25,17 +26,19 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mName;
-        TextView mSecondName;
+        TextView mSurname;
         TextView mCourse;
         ImageView mDelete;
+        ExamResultView mExamResultView;
 
         ViewHolder(View v) {
             super(v);
 
             mName = (TextView) v.findViewById(R.id.student_item_name);
-            mSecondName = (TextView) v.findViewById(R.id.student_item_second_name);
+            mSurname = (TextView) v.findViewById(R.id.student_item_surname);
             mCourse = (TextView) v.findViewById(R.id.student_item_course_text);
             mDelete = (ImageView) v.findViewById(R.id.student_item_delete);
+            mExamResultView = (ExamResultView) v.findViewById(R.id.student_item_exam_result);
         }
     }
 
@@ -52,8 +55,9 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.ViewHo
         View view = holder.itemView;
 
         holder.mName.setText(mStudents.get(position).getName());
-        holder.mSecondName.setText(mStudents.get(position).getSecondName());
+        holder.mSurname.setText(mStudents.get(position).getSurname());
         holder.mCourse.setText(String.valueOf(mStudents.get(position).getCourse()));
+        holder.mExamResultView.setResultPart(mStudents.get(position).getResults());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,12 +83,16 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.ViewHo
         }
     }
 
-    public interface OnIteractionListener{
+    public interface OnInteractionListener {
         void onItemClick(long studentId);
         void onDeleteItemClick(long studentId);
     }
 
     public void setStudents(List<Student> mStudents) {
         this.mStudents = mStudents;
+    }
+
+    public List<Student> getStudents() {
+        return mStudents;
     }
 }

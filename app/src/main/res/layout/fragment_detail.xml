@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context="com.students.view.fragments.EditlFragment">
+    tools:context="com.students.view.fragments.EditFragment">
 
     <GridLayout
         android:layout_width="match_parent"
@@ -84,7 +84,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/detail_fragment_second_name_editor"
+            android:id="@+id/detail_fragment_surname_editor"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_column="1"

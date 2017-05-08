@@ -1,7 +1,6 @@
 package com.students.view.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -33,16 +32,17 @@ import javax.inject.Inject;
  * Activities that contain this fragment must implement the
  * {@link StudentsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link StudentsFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
-public class StudentsFragment extends BaseFragment implements ListView, StudentsAdapter.OnIteractionListener{
+public class StudentsFragment extends BaseFragment implements ListView, StudentsAdapter.OnInteractionListener {
+
+    public static final String STUDENTS_FRAGMENT_TAG = "studentFragment";
 
     private OnFragmentInteractionListener mListener;
 
     @Inject
     ListPresenter mPresenter;
     private RecyclerView mRecyclerView;
+    private int mRecyclerLastScrollPosition = 0;
     private StudentsAdapter mAdapter;
     private Bundle mSavedInstanceState;
 
@@ -69,7 +69,6 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
         mAdapter = new StudentsAdapter(null, this);
         mRecyclerView.setAdapter(mAdapter);
         mPresenter.init(this);
-        mPresenter.getAllStudents();
         return v;
     }
 
@@ -81,6 +80,7 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
         addItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+//                give null or zero if we wont to add new student
                 mListener.startEditor(null);
                 return false;
             }
@@ -116,16 +116,24 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
     @Override
     public void onResume() {
         super.onResume();
+        mPresenter.getAllStudents();
+    }
 
-        if(mSavedInstanceState == null){
-            mPresenter.getAllStudents();
-        }
+    @Override
+    public void onPause() {
+        super.onPause();
+        mRecyclerLastScrollPosition = ((LinearLayoutManager)mRecyclerView.getLayoutManager())
+                .findFirstCompletelyVisibleItemPosition();
     }
 
     @Override
     public void setAllStudents(List<Student> students) {
-            mAdapter.setStudents(students);
-            mAdapter.notifyDataSetChanged();
+        mAdapter.setStudents(students);
+        mAdapter.notifyDataSetChanged();
+
+        if(mAdapter.getStudents() != null && !mAdapter.getStudents().isEmpty()) {
+            mRecyclerView.smoothScrollToPosition(mRecyclerLastScrollPosition);
+        }
     }
 
     @Override
@@ -139,6 +147,12 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
     }
 
     public interface OnFragmentInteractionListener {
+//        give id if we wont to edit student data
         void startEditor(Long studentId);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

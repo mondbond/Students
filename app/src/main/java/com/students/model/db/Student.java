@@ -14,7 +14,7 @@ public class Student {
 
     private String name;
 
-    private String secondName;
+    private String surname;
 
     private int course;
 
@@ -22,12 +22,12 @@ public class Student {
 
     private int results;
 
-    @Generated(hash = 1511194292)
-    public Student(Long id, String name, String secondName, int course,
+    @Generated(hash = 1936740436)
+    public Student(Long id, String name, String surname, int course,
             String occupation, int results) {
         this.id = id;
         this.name = name;
-        this.secondName = secondName;
+        this.surname = surname;
         this.course = course;
         this.occupation = occupation;
         this.results = results;
@@ -53,12 +53,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getSecondName() {
-        return this.secondName;
+    public String getSurname() {
+        return this.surname;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public int getCourse() {

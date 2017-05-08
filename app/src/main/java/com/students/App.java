@@ -26,6 +26,8 @@ public class App extends Application{
                 .appModule(new AppModule(this))
                 .build();
         sAppComponent.inject(this);
+
+
     }
 }
 
