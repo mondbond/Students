@@ -7,14 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.students.R;
 import com.students.commons.BaseFragment;
 import com.students.di.MainComponent;
@@ -22,9 +20,7 @@ import com.students.model.db.Student;
 import com.students.presenters.ListPresenter;
 import com.students.view.ListView;
 import com.students.view.adapter.StudentsAdapter;
-
 import java.util.List;
-
 import javax.inject.Inject;
 
 /**
@@ -38,7 +34,6 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
     public static final String STUDENTS_FRAGMENT_TAG = "studentFragment";
 
     private OnFragmentInteractionListener mListener;
-
     @Inject
     ListPresenter mPresenter;
     private RecyclerView mRecyclerView;

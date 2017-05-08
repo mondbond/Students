@@ -1,8 +1,6 @@
 package com.students.presenters;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.students.R;
 import com.students.commons.BasePresenter;
 import com.students.model.DbHelper;

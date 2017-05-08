@@ -4,7 +4,6 @@ import com.students.view.activity.EditActivity;
 import com.students.view.activity.ListActivity;
 import com.students.view.fragments.EditFragment;
 import com.students.view.fragments.StudentsFragment;
-
 import dagger.Component;
 
 @Component(dependencies = {AppComponent.class}, modules = {MainModule.class})

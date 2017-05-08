@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.students.R;
 import com.students.commons.BaseFragment;
 import com.students.di.MainComponent;
@@ -17,7 +16,6 @@ import com.students.model.db.Student;
 import com.students.presenters.EditPresenter;
 import com.students.util.MinMaxInputFilter;
 import com.students.view.EditView;
-
 import javax.inject.Inject;
 
 /**
@@ -88,7 +86,6 @@ public class EditFragment extends BaseFragment implements EditView{
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(!mId.getText().toString().equals("") && !mName.getText().toString().equals("")
                         && !mSurname.getText().toString().equals("") && !mResult.getText().toString().equals("")
                         && !mCourse.getText().toString().equals("") && !mOccupation.getText().toString().equals("")) {

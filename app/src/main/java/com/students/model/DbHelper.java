@@ -1,19 +1,13 @@
 package com.students.model;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteConstraintException;
-import android.util.Log;
-
 import com.students.model.db.DaoMaster;
 import com.students.model.db.DaoSession;
 import com.students.model.db.Student;
 import com.students.model.db.StudentDao;
-
 import org.greenrobot.greendao.database.Database;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

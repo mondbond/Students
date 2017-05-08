@@ -2,7 +2,6 @@ package com.students.commons;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
 import com.students.App;
 import com.students.di.AppComponent;
 

@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.students.R;
 import com.students.commons.IHasComponent;
 import com.students.di.MainComponent;
 import com.students.view.fragments.EditFragment;
-import com.students.view.fragments.StudentsFragment;
 
 public class EditActivity extends AppCompatActivity implements IHasComponent<MainComponent> {
 
