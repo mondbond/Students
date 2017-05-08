@@ -15,7 +15,7 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:id="@+id/detail_fragment_name"
+            android:id="@+id/edit_fragment_name"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_column="0"
@@ -25,7 +25,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/detail_fragment_second_name"
+            android:id="@+id/edit_fragment_second_name"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_column="0"
@@ -35,7 +35,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/detail_fragment_course"
+            android:id="@+id/edit_fragment_course"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_column="0"
@@ -45,7 +45,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/detail_fragment_occupation"
+            android:id="@+id/edit_fragment_occupation"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_column="0"
@@ -55,7 +55,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/detail_fragment_results"
+            android:id="@+id/edit_fragment_results"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_column="0"
@@ -65,7 +65,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/detail_fragment_id"
+            android:id="@+id/edit_fragment_id"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_column="0"
@@ -75,7 +75,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/detail_fragment_name_editor"
+            android:id="@+id/edit_fragment_name_editor"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -84,7 +84,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/detail_fragment_surname_editor"
+            android:id="@+id/edit_fragment_surname_editor"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -93,7 +93,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/detail_fragment_course_editor"
+            android:id="@+id/edit_fragment_course_editor"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -103,7 +103,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/detail_fragment_occupation_editor"
+            android:id="@+id/edit_fragment_occupation_editor"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -112,7 +112,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/detail_fragment_result_editor"
+            android:id="@+id/edit_fragment_result_editor"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -122,7 +122,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/detail_fragment_id_editor"
+            android:id="@+id/edit_fragment_id_editor"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -133,7 +133,7 @@
     </GridLayout>
 
     <Button
-        android:id="@+id/detail_fragment_save_btn"
+        android:id="@+id/edit_fragment_save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"

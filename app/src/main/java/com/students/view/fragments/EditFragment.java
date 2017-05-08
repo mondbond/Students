@@ -74,17 +74,17 @@ public class EditFragment extends BaseFragment implements EditView{
 
         mPresenter.init(this);
 
-        mId = (EditText) v.findViewById(R.id.detail_fragment_id_editor);
+        mId = (EditText) v.findViewById(R.id.edit_fragment_id_editor);
         mId.setFilters(new InputFilter[] {new MinMaxInputFilter(1, 999999)});
-        mName = (EditText) v.findViewById(R.id.detail_fragment_name_editor);
-        mSurname = (EditText) v.findViewById(R.id.detail_fragment_surname_editor);
-        mCourse = (EditText) v.findViewById(R.id.detail_fragment_course_editor);
+        mName = (EditText) v.findViewById(R.id.edit_fragment_name_editor);
+        mSurname = (EditText) v.findViewById(R.id.edit_fragment_surname_editor);
+        mCourse = (EditText) v.findViewById(R.id.edit_fragment_course_editor);
         mCourse.setFilters(new InputFilter[] {new MinMaxInputFilter(1, 6)});
-        mOccupation = (EditText) v.findViewById(R.id.detail_fragment_occupation_editor);
-        mResult = (EditText) v.findViewById(R.id.detail_fragment_result_editor);
+        mOccupation = (EditText) v.findViewById(R.id.edit_fragment_occupation_editor);
+        mResult = (EditText) v.findViewById(R.id.edit_fragment_result_editor);
         mResult.setFilters(new InputFilter[] {new MinMaxInputFilter(0, 100)});
 
-        mSaveButton = (Button) v.findViewById(R.id.detail_fragment_save_btn);
+        mSaveButton = (Button) v.findViewById(R.id.edit_fragment_save_btn);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
