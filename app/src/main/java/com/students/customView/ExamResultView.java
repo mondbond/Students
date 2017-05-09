@@ -24,12 +24,12 @@ public class ExamResultView extends View {
     private final int VERY_BAD_RESULT = Color.parseColor("#FFEF5350");
     private final int BACKGROUND_COLOR = Color.parseColor("#FFE0E0E0");
 
-    int contentWidth;
-    int contentHeight;
-    private Paint paint = new Paint();
-    private Integer resultPart;
+    int mContentWidth;
+    int mContentHeight;
+    private Paint mPaint = new Paint();
+    private Integer mResultPart;
 
-    private TypedArray attr;
+    private TypedArray mAttr;
 
     public ExamResultView(Context context) {
         super(context);
@@ -39,7 +39,7 @@ public class ExamResultView extends View {
     public ExamResultView(Context context, int result) {
         super(context);
         init(null, 0);
-        resultPart = result;
+        mResultPart = result;
     }
 
     public ExamResultView(Context context, AttributeSet attrs) {
@@ -53,9 +53,9 @@ public class ExamResultView extends View {
     }
 
     private void init(AttributeSet attrs, int defStyle) {
-        attr = getContext().obtainStyledAttributes(
+        mAttr = getContext().obtainStyledAttributes(
                 attrs, R.styleable.ExamResultView, defStyle, 0);
-        if(resultPart == null) resultPart = attr.getInt(R.styleable.ExamResultView_rating, 0);
+        if(mResultPart == null) mResultPart = mAttr.getInt(R.styleable.ExamResultView_rating, 0);
     }
 
     @Override
@@ -95,41 +95,41 @@ public class ExamResultView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        contentWidth = getWidth() - getPaddingLeft() - getPaddingRight();
-        contentHeight = getHeight() - getPaddingTop() - getPaddingBottom();
+        mContentWidth = getWidth() - getPaddingLeft() - getPaddingRight();
+        mContentHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
         drawBackgroundRec(canvas);
-        drawResultRec(canvas, resultPart);
+        drawResultRec(canvas, mResultPart);
     }
 
     private void drawResultRec(Canvas canvas, int rating) {
-        if(resultPart >= 90){
-            paint.setColor(VERY_GOOD_RESULT_COLOR);
-        } else if(resultPart >= 75){
-            paint.setColor(GOOD_RESULT_COLOR);
-        }else if(resultPart >= 50){
-            paint.setColor(NORMAL_RESULT_COLOR);
-        }else if(resultPart >= 25){
-            paint.setColor(BAD_RESULT_COLOR);
-        }else if(resultPart <25){
-            paint.setColor(VERY_BAD_RESULT);
+        if(mResultPart >= 90){
+            mPaint.setColor(VERY_GOOD_RESULT_COLOR);
+        } else if(mResultPart >= 75){
+            mPaint.setColor(GOOD_RESULT_COLOR);
+        }else if(mResultPart >= 50){
+            mPaint.setColor(NORMAL_RESULT_COLOR);
+        }else if(mResultPart >= 25){
+            mPaint.setColor(BAD_RESULT_COLOR);
+        }else if(mResultPart <25){
+            mPaint.setColor(VERY_BAD_RESULT);
         }
 
         Rect resultRec = new Rect(getPaddingLeft(), getPaddingTop(),
-                contentWidth / 100 * rating, contentHeight);
-        canvas.drawRect(resultRec, paint);
+                mContentWidth / 100 * rating, mContentHeight);
+        canvas.drawRect(resultRec, mPaint);
     }
 
     private void drawBackgroundRec(Canvas canvas) {
-        paint.setColor(BACKGROUND_COLOR);
+        mPaint.setColor(BACKGROUND_COLOR);
         Rect backgroundRec = new Rect(getPaddingLeft(), getPaddingTop(),
-                contentWidth, contentHeight);
+                mContentWidth, mContentHeight);
 
-        canvas.drawRect(backgroundRec, paint);
+        canvas.drawRect(backgroundRec, mPaint);
     }
 
-    public void setResultPart(Integer resultPart) {
-        this.resultPart = resultPart;
+    public void setResultPart(Integer mResultPart) {
+        this.mResultPart = mResultPart;
         invalidate();
     }
 }

@@ -67,7 +67,7 @@
         android:id="@+id/student_item_exam_result"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_toRightOf="@+id/student_item_course_text"
+        android:layout_toRightOf="@+id/student_item_course_text"    
         android:layout_toEndOf="@+id/student_item_course_text"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
