@@ -34,7 +34,7 @@ public class DbHelper {
                 allStudents = storeDao.loadAll();
 
                 subscriber.onNext(allStudents);
-            }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+            }}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<Student> getStudentById (long studentId) {
@@ -47,7 +47,7 @@ public class DbHelper {
                         .where(StudentDao.Properties.Id.eq(studentId)).unique();
 
                 subscriber.onNext(student);
-            }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+            }}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<Boolean> deleteStudentById (long studentId) {
@@ -59,7 +59,7 @@ public class DbHelper {
                 storeDao.deleteByKey(studentId);
 
                 subscriber.onNext(true);
-            }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+            }}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<Boolean> deleteAll () {
@@ -71,7 +71,7 @@ public class DbHelper {
                 storeDao.deleteAll();
 
                 subscriber.onNext(true);
-            }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+            }}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<Boolean> updateOrInsertStudentData (Student newStudentData) {
@@ -83,6 +83,6 @@ public class DbHelper {
                 storeDao.insertOrReplaceInTx(newStudentData);
 
                 subscriber.onNext(true);
-            }}).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+            }}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

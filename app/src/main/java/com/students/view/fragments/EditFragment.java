@@ -121,6 +121,12 @@ public class EditFragment extends BaseFragment implements EditView{
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.unsubscribe();
+    }
+
+    @Override
     public void setStudentInfo(Student student) {
         mId.setText(String.valueOf(student.getId()));
         mName.setText(student.getName());

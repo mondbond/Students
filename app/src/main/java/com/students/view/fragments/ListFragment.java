@@ -135,6 +135,12 @@ public class ListFragment extends BaseFragment implements ListView, StudentsAdap
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.unsubscribe();
+    }
+
+    @Override
     public void setDbQueryStatus(boolean status) {
         mBdQueryState = status;
     }

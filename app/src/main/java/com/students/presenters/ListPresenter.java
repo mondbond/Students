@@ -1,15 +1,16 @@
 package com.students.presenters;
 
-import android.content.Context;
 import com.students.commons.BasePresenter;
 import com.students.model.DbHelper;
 import com.students.view.ListView;
 import javax.inject.Inject;
+import rx.Subscription;
 
 public class ListPresenter implements BasePresenter<ListView> {
 
     private ListView mView;
     private DbHelper mDbHelper;
+    private Subscription mSubscription;
 
     @Inject
     public ListPresenter(DbHelper mDbHelper) {
@@ -21,16 +22,23 @@ public class ListPresenter implements BasePresenter<ListView> {
         this.mView = view;
     }
 
+    @Override
+    public void unsubscribe() {
+        if(mSubscription != null) {
+            mSubscription.unsubscribe();
+        }
+    }
+
     public void getAllStudents() {
         mView.setDbQueryStatus(true);
-        mDbHelper.getAllStudents().subscribe(students -> {
+        mSubscription = mDbHelper.getAllStudents().subscribe(students -> {
             mView.setAllStudents(students);
         });
     }
 
     public void deleteAll() {
         mView.setDbQueryStatus(true);
-        mDbHelper.deleteAll().subscribe(res -> {
+        mSubscription = mDbHelper.deleteAll().subscribe(res -> {
             if(res){
                 mView.setAllStudents(null);
             }
@@ -39,7 +47,7 @@ public class ListPresenter implements BasePresenter<ListView> {
 
     public void deleteStudentById(long studentId) {
         mView.setDbQueryStatus(true);
-        mDbHelper.deleteStudentById(studentId).subscribe(res -> {
+        mSubscription = mDbHelper.deleteStudentById(studentId).subscribe(res -> {
             if(res){
                 getAllStudents();
             }
