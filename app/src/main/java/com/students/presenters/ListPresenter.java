@@ -10,12 +10,10 @@ public class ListPresenter implements BasePresenter<ListView> {
 
     private ListView mView;
     private DbHelper mDbHelper;
-    private Context mContext;
 
     @Inject
-    public ListPresenter(DbHelper mDbHelper, Context mContext) {
+    public ListPresenter(DbHelper mDbHelper) {
         this.mDbHelper = mDbHelper;
-        this.mContext = mContext;
     }
 
     @Override

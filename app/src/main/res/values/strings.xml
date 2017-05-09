@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Students</string>
-    <string name="saved">change saved</string>
+    <string name="saved">Change have been saved</string>
     <string name="save">Save</string>
-    <string name="empty_fields_error_msg">All fields should not be empty</string>
+    <string name="empty_fields_error_msg">Fields shouldn\'t be empty</string>
 
-    <string name="edit_student_id">Student card № :</string>
-    <string name="edit_student_name">Name :</string>
-    <string name="edit_student_surname">Surname :</string>
-    <string name="edit_student_occupation">Occupation :</string>
-    <string name="edit_student_course">Course :</string>
-    <string name="edit_student_result">Result :</string>
+    <string name="edit_student_id">Student card № : </string>
+    <string name="edit_student_name">Name : </string>
+    <string name="edit_student_surname">Surname : </string>
+    <string name="edit_student_occupation">Occupation : </string>
+    <string name="edit_student_course">Course : </string>
+    <string name="edit_student_result">Result : </string>
 
     <string name="course">course : </string>
 </resources>

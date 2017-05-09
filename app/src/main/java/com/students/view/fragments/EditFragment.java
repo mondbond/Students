@@ -109,7 +109,9 @@ public class EditFragment extends BaseFragment implements EditView{
     public void onResume() {
         super.onResume();
 
-        //        if we need to edit students data
+//        if we need to edit students data
+//        don't make query if last one doesn't come yet
+//        make query only if all fields empty (for first time only)
         if(mStudentId != 0 && !mDbQueryState &&mId.getText().toString().equals("")
                 && mName.getText().toString().equals("") && mSurname.getText().toString().equals("")
                 && mResult.getText().toString().equals("")
@@ -133,7 +135,6 @@ public class EditFragment extends BaseFragment implements EditView{
     @Override
     public void showMessageInfo(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-
         mDbQueryState = false;
     }
 

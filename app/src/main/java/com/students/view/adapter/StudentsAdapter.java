@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.students.R;
-import com.students.custom_view.ExamResultView;
+import com.students.customView.ExamResultView;
 import com.students.model.db.Student;
 import java.util.List;
 

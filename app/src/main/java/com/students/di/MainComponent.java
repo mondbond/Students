@@ -9,6 +9,7 @@ import dagger.Component;
 
 @Component(dependencies = {AppComponent.class}, modules = {MainModule.class})
 public interface MainComponent {
+
     void inject(ListActivity listActivity);
     void inject(EditActivity editActivity);
     void inject(ListFragment listFragment);

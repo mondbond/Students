@@ -39,8 +39,6 @@ public class ListFragment extends BaseFragment implements ListView, StudentsAdap
     private RecyclerView mRecyclerView;
     private int mRecyclerLastScrollPosition = 0;
     private StudentsAdapter mAdapter;
-    private Bundle mSavedInstanceState;
-
     private boolean mBdQueryState;
 
     @Override
@@ -50,7 +48,6 @@ public class ListFragment extends BaseFragment implements ListView, StudentsAdap
         setHasOptionsMenu(true);
 
         getComponent(MainComponent.class).inject(this);
-        mSavedInstanceState = savedInstanceState;
     }
 
     @Override
@@ -113,7 +110,7 @@ public class ListFragment extends BaseFragment implements ListView, StudentsAdap
     @Override
     public void onResume() {
         super.onResume();
-
+//        don't make query if last one doesn't come yet
         if(!mBdQueryState) {
             mPresenter.getAllStudents();
         }
@@ -130,12 +127,10 @@ public class ListFragment extends BaseFragment implements ListView, StudentsAdap
     public void setAllStudents(List<Student> students) {
         mAdapter.setStudents(students);
         mAdapter.notifyDataSetChanged();
-
         if(mAdapter.getStudents() != null && !mAdapter.getStudents().isEmpty()) {
             if (mRecyclerLastScrollPosition < 0) mRecyclerLastScrollPosition = 0;
             mRecyclerView.smoothScrollToPosition(mRecyclerLastScrollPosition);
         }
-
         mBdQueryState = false;
     }
 

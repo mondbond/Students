@@ -1,4 +1,4 @@
-package com.students.custom_view;
+package com.students.customView;
 
 import android.content.Context;
 import android.content.res.TypedArray;

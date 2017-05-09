@@ -63,7 +63,7 @@
         android:layout_toRightOf="@+id/student_item_name"
         android:layout_toEndOf="@+id/student_item_name" />
 
-    <com.students.custom_view.ExamResultView
+    <com.students.customView.ExamResultView
         android:id="@+id/student_item_exam_result"
         android:layout_width="100dp"
         android:layout_height="30dp"
