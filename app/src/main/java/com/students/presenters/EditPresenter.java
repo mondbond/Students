@@ -26,12 +26,14 @@ public class EditPresenter implements BasePresenter<EditView> {
     }
 
     public void getStudentById(long studentId) {
+        mView.setDbQueryStatus(true);
         mDbHelper.getStudentById(studentId).subscribe(student -> {
             mView.setStudentInfo(student);
         });
     }
 
     public void addOrUpdateStudent(Student student) {
+        mView.setDbQueryStatus(true);
         mDbHelper.updateOrInsertStudentData(student).subscribe(res -> {
             if(res){
                 mView.showMessageInfo(mContext.getResources().getString(R.string.saved));

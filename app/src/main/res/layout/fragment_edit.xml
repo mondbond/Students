@@ -16,61 +16,67 @@
 
         <TextView
             android:id="@+id/edit_fragment_name"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_column="0"
             android:layout_row="0"
             android:text="@string/edit_student_name"
+            android:textAlignment="viewEnd"
             android:textColor="@color/colorText"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_fragment_second_name"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_column="0"
             android:layout_row="1"
-            android:text="@string/edit_student_second_name"
+            android:text="@string/edit_student_surname"
+            android:textAlignment="viewEnd"
             android:textColor="@color/colorText"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_fragment_course"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_column="0"
             android:layout_row="2"
             android:text="@string/edit_student_course"
+            android:textAlignment="viewEnd"
             android:textColor="@color/colorText"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_fragment_occupation"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_column="0"
             android:layout_row="3"
             android:text="@string/edit_student_occupation"
+            android:textAlignment="viewEnd"
             android:textColor="@color/colorText"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_fragment_results"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_column="0"
             android:layout_row="4"
             android:text="@string/edit_student_result"
+            android:textAlignment="viewEnd"
             android:textColor="@color/colorText"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_fragment_id"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_column="0"
             android:layout_row="5"
             android:text="@string/edit_student_id"
+            android:textAlignment="viewEnd"
             android:textColor="@color/colorText"
             android:textSize="18sp" />
 

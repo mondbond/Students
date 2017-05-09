@@ -36,6 +36,7 @@ public class EditFragment extends BaseFragment implements EditView{
     private EditText mOccupation;
     private EditText mResult;
     private EditText mCourse;
+    private boolean mDbQueryState;
 
     @Inject
     EditPresenter mPresenter;
@@ -68,7 +69,7 @@ public class EditFragment extends BaseFragment implements EditView{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_detail, container, false);
+        View v = inflater.inflate(R.layout.fragment_edit, container, false);
 
         mPresenter.init(this);
 
@@ -93,7 +94,7 @@ public class EditFragment extends BaseFragment implements EditView{
                             mSurname.getText().toString(), Integer.parseInt(mCourse.getText().toString()),
                             mOccupation.getText().toString(), Integer.parseInt(mResult.getText().toString()));
 
-                    mPresenter.addOrUpdateStudent(newStudentInfo);
+                    if(!mDbQueryState) mPresenter.addOrUpdateStudent(newStudentInfo);
                 }else {
                     Toast.makeText(getActivity(), getResources().getString(R.string.empty_fields_error_msg),
                             Toast.LENGTH_LONG).show();
@@ -101,12 +102,20 @@ public class EditFragment extends BaseFragment implements EditView{
             }
         });
 
-//        if we need to edit students data
-        if(mStudentId != 0){
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //        if we need to edit students data
+        if(mStudentId != 0 && !mDbQueryState &&mId.getText().toString().equals("")
+                && mName.getText().toString().equals("") && mSurname.getText().toString().equals("")
+                && mResult.getText().toString().equals("")
+                && mCourse.getText().toString().equals("") && mOccupation.getText().toString().equals("")){
             mPresenter.getStudentById(mStudentId);
         }
-
-        return v;
     }
 
     @Override
@@ -115,12 +124,21 @@ public class EditFragment extends BaseFragment implements EditView{
         mName.setText(student.getName());
         mOccupation.setText(student.getOccupation());
         mSurname.setText(student.getSurname());
-        mCourse.setText(Integer.toString(student.getCourse()));
-        mResult.setText(Integer.toString(student.getResults()));
+        mCourse.setText(String.valueOf(student.getCourse()));
+        mResult.setText(String.valueOf(student.getResults()));
+
+        mDbQueryState = false;
     }
 
     @Override
     public void showMessageInfo(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+
+        mDbQueryState = false;
+    }
+
+    @Override
+    public void setDbQueryStatus(boolean status) {
+        mDbQueryState = status;
     }
 }

@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface ListView {
     void setAllStudents(List<Student> students);
+    void setDbQueryStatus(boolean status);
 }

@@ -26,10 +26,10 @@ import javax.inject.Inject;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link StudentsFragment.OnFragmentInteractionListener} interface
+ * {@link ListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class StudentsFragment extends BaseFragment implements ListView, StudentsAdapter.OnInteractionListener {
+public class ListFragment extends BaseFragment implements ListView, StudentsAdapter.OnInteractionListener {
 
     public static final String STUDENTS_FRAGMENT_TAG = "studentFragment";
 
@@ -40,6 +40,8 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
     private int mRecyclerLastScrollPosition = 0;
     private StudentsAdapter mAdapter;
     private Bundle mSavedInstanceState;
+
+    private boolean mBdQueryState;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,7 +113,10 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.getAllStudents();
+
+        if(!mBdQueryState) {
+            mPresenter.getAllStudents();
+        }
     }
 
     @Override
@@ -127,8 +132,16 @@ public class StudentsFragment extends BaseFragment implements ListView, Students
         mAdapter.notifyDataSetChanged();
 
         if(mAdapter.getStudents() != null && !mAdapter.getStudents().isEmpty()) {
+            if (mRecyclerLastScrollPosition < 0) mRecyclerLastScrollPosition = 0;
             mRecyclerView.smoothScrollToPosition(mRecyclerLastScrollPosition);
         }
+
+        mBdQueryState = false;
+    }
+
+    @Override
+    public void setDbQueryStatus(boolean status) {
+        mBdQueryState = status;
     }
 
     @Override

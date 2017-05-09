@@ -11,13 +11,13 @@ import com.students.di.AppComponent;
 import com.students.di.DaggerMainComponent;
 import com.students.di.MainComponent;
 import com.students.view.fragments.EditFragment;
-import com.students.view.fragments.StudentsFragment;
+import com.students.view.fragments.ListFragment;
 
 public class ListActivity extends BaseActivity implements IHasComponent<MainComponent>,
-        StudentsFragment.OnFragmentInteractionListener {
+        ListFragment.OnFragmentInteractionListener {
 
     private static MainComponent sComponent;
-    private StudentsFragment mStudentsFragment;
+    private ListFragment mListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +26,14 @@ public class ListActivity extends BaseActivity implements IHasComponent<MainComp
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-        mStudentsFragment = (StudentsFragment) getSupportFragmentManager()
-                .findFragmentByTag(StudentsFragment.STUDENTS_FRAGMENT_TAG);
+        mListFragment = (ListFragment) getSupportFragmentManager()
+                .findFragmentByTag(ListFragment.STUDENTS_FRAGMENT_TAG);
 
-        if(mStudentsFragment == null){
-            mStudentsFragment = new StudentsFragment();
+        if(mListFragment == null){
+            mListFragment = new ListFragment();
         }
-        ft.replace(R.id.studentsFragmentContainer, mStudentsFragment,
-                StudentsFragment.STUDENTS_FRAGMENT_TAG).commit();
+        ft.replace(R.id.studentsFragmentContainer, mListFragment,
+                ListFragment.STUDENTS_FRAGMENT_TAG).commit();
     }
 
     @Override
