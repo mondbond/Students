@@ -23,7 +23,6 @@ public class ExamResultView extends View {
     private final int BAD_RESULT_COLOR = Color.parseColor("#FFFFD54F");
     private final int VERY_BAD_RESULT = Color.parseColor("#FFEF5350");
     private final int BACKGROUND_COLOR = Color.parseColor("#FFE0E0E0");
-    private final int NO_DATA_COLOR = Color.parseColor("#D6D6D7");
 
     int contentWidth;
     int contentHeight;
@@ -56,6 +55,7 @@ public class ExamResultView extends View {
     private void init(AttributeSet attrs, int defStyle) {
         attr = getContext().obtainStyledAttributes(
                 attrs, R.styleable.ExamResultView, defStyle, 0);
+        if(resultPart == null) resultPart = attr.getInt(R.styleable.ExamResultView_rating, 0);
     }
 
     @Override
@@ -98,22 +98,8 @@ public class ExamResultView extends View {
         contentWidth = getWidth() - getPaddingLeft() - getPaddingRight();
         contentHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
-        if (resultPart != null) {
-            drawBackgroundRec(canvas);
-            drawResultRec(canvas, resultPart);
-        } else if(attr.getInt(R.styleable.ExamResultView_rating, 0) > 0){
-            drawBackgroundRec(canvas);
-            drawResultRec(canvas, attr.getInt(R.styleable.ExamResultView_rating, 0));
-        }else {
-            drawNoDataRec(canvas);
-        }
-    }
-
-    private void drawNoDataRec(Canvas canvas) {
-        paint.setColor(NO_DATA_COLOR);
-        Rect womanRec = new Rect(getPaddingLeft(), getPaddingTop(),
-                contentWidth, contentHeight);
-        canvas.drawRect(womanRec, paint);
+        drawBackgroundRec(canvas);
+        drawResultRec(canvas, resultPart);
     }
 
     private void drawResultRec(Canvas canvas, int rating) {
